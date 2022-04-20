@@ -18,4 +18,6 @@ public:
 private:
     sample_t samples[12];
 
+    sample_t parseData(uint32_t data);
+
 };
