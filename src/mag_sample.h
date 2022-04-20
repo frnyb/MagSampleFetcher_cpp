@@ -18,4 +18,4 @@ public:
 private:
     sample_t samples[12];
 
-}
+};
