@@ -15,6 +15,7 @@ public:
     ~MagSampleFetcher();
 
     std::vector<MagSample> GetSamples(unsigned int count);
+    std::vector<MagSample> GetSamples();
 
 private:
     BRAM bram;

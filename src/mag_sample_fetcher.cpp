@@ -9,11 +9,7 @@ MagSampleFetcher::~MagSampleFetcher() {
     XMagsamplefetcher_Release(&xmsf);
 }
 
-std::vector<MagSample> MagSampleFetcher::GetSamples(unsigned int n_periods) {
-    while(!XMagsamplefetcher_IsIdle(&xmsf));
-
-    XMagsamplefetcher_Set_n_periods(&xmsf, n_periods);
-
+std::vector<MagSample> MagSampleFetcher::GetSamples() {
     while(!XMagsamplefetcher_IsIdle(&xmsf));
 
     XMagsamplefetcher_Start(&xmsf);
@@ -30,5 +26,13 @@ std::vector<MagSample> MagSampleFetcher::GetSamples(unsigned int n_periods) {
     }
 
     return samples;
+}
+
+std::vector<MagSample> MagSampleFetcher::GetSamples(unsigned int n_periods) {
+    while(!XMagsamplefetcher_IsIdle(&xmsf));
+
+    XMagsamplefetcher_Set_n_periods(&xmsf, n_periods);
+
+    return GetSamples();
 }
 
