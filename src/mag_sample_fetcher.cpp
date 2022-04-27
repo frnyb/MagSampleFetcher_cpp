@@ -50,7 +50,6 @@ bool MagSampleFetcher::Start() {
     for (int i = 0; i < n_samples; i++) {
 
         MagSample mag_sample(&bram, i*12);
-        std::cout << mag_sample[0].data << std::endl;
         samples->push_back(mag_sample);
 
     }
