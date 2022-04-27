@@ -9,7 +9,7 @@ MagSampleFetcher::~MagSampleFetcher() {
     XMagsamplefetcher_Release(&xmsf);
 }
 
-bool MagSampleFetcher::Start(unsigned int count) {
+bool MagSampleFetcher::Start(unsigned int n_periods) {
 
     if(!XMagsamplefetcher_IsIdle(&xmsf)) {
 
@@ -19,7 +19,7 @@ bool MagSampleFetcher::Start(unsigned int count) {
 
     XMagsamplefetcher_Set_n_periods(&xmsf, n_periods);
 
-    return GetSamples();
+    return Start();
 
 }
 

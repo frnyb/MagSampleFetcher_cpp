@@ -14,7 +14,7 @@ public:
     MagSampleFetcher(unsigned int bram_uio_number, unsigned int bram_size);
     ~MagSampleFetcher();
 
-    bool Start(unsigned int count);
+    bool Start(unsigned int n_periods);
     bool Start();
 
     bool IsRunning();
