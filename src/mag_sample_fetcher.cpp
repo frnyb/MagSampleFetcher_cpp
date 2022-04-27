@@ -56,3 +56,16 @@ bool MagSampleFetcher::Start() {
 
     return true;
 }
+
+bool MagSampleFetcher::IsRunning() {
+
+    if(!XMagsamplefetcher_IsIdle(&xmsf)) {
+
+        return true;
+
+    } else {
+
+        return false;
+
+    }
+}

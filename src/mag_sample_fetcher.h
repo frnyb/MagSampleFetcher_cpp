@@ -17,6 +17,8 @@ public:
     bool Start(unsigned int count);
     bool Start();
 
+    bool IsRunning();
+
     GetSamples(std::vector<MagSample> *samples);
 
 private:
