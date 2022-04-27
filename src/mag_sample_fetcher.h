@@ -19,7 +19,7 @@ public:
 
     bool IsRunning();
 
-    GetSamples(std::vector<MagSample> *samples);
+    bool GetSamples(std::vector<MagSample> *samples);
 
 private:
     BRAM bram;
