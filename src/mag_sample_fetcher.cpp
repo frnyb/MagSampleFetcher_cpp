@@ -49,12 +49,20 @@ bool MagSampleFetcher::Start() {
 
     std::cout << std::to_string(n_samples) << std::endl;
 
+    auto start = std::chrono::steady_clock::now();
+
     for (int i = 0; i < n_samples; i++) {
 
         MagSample mag_sample(&bram, i*12);
         samples->push_back(mag_sample);
 
     }
+
+    auto end = std::chrono::steady_clock::now();
+    std::chrono::duration<double> dur = end - start;
+
+    std::cout << "Read time: " << dur.count() << std::endl;
+
 
     return true;
 }

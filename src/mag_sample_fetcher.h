@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <iostream>
+#include <chrono>
 
 #include "mag_sample.h"
 
