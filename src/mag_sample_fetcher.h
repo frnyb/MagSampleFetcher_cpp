@@ -14,16 +14,13 @@ public:
     MagSampleFetcher(unsigned int bram_uio_number, unsigned int bram_size);
     ~MagSampleFetcher();
 
-    SetSleepFunction(void (*function)(void));
+    bool Start(unsigned int count);
+    bool Start();
 
-    std::vector<MagSample> GetSamples(unsigned int count);
-    std::vector<MagSample> GetSamples();
+    GetSamples(std::vector<MagSample> *samples);
 
 private:
     BRAM bram;
     XMagsamplefetcher xmsf;
 
-    void (*sleepFunction)(void);
-
-    void sleepDummyFunction();
 };
