@@ -47,6 +47,8 @@ bool MagSampleFetcher::Start() {
 
 	int n_samples = XMagsamplefetcher_Get_n_samples_out(&xmsf);
 
+    std::cout << std::to_string(n_samples) << std::endl;
+
     for (int i = 0; i < n_samples; i++) {
 
         MagSample mag_sample(&bram, i*12);
