@@ -3,6 +3,8 @@
 MagSampleFetcher::MagSampleFetcher(unsigned int bram_uio_number, unsigned int bram_size) 
         : bram(bram_uio_number, bram_size) {
     XMagsamplefetcher_Initialize(&xmsf, "MagSampleFetcher");
+
+    sleepFunction = &sleepDummyFunction;
 }
 
 MagSampleFetcher::~MagSampleFetcher() {
@@ -36,3 +38,14 @@ std::vector<MagSample> MagSampleFetcher::GetSamples(unsigned int n_periods) {
     return GetSamples();
 }
 
+void MagSampleFetcher::sleepDummyFunction() {
+
+    return;
+
+}
+
+void MagSampleFetcher::SetSleepFunction(void (*function)(void)) {
+
+    sleepFunction = function;
+
+}
