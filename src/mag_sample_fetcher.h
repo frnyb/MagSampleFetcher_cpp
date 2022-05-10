@@ -18,6 +18,6 @@ public:
     std::vector<MagSample> GetSamples();
 
 private:
-    BRAM bram;
+    BRAM<> bram;
     XMagsamplefetcher xmsf;
 };
