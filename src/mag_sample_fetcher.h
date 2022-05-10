@@ -6,6 +6,8 @@
 #include "stdint.h"
 
 #include <vector>
+#include <iostream>
+#include <chrono>
 
 #include "mag_sample.h"
 
@@ -14,10 +16,15 @@ public:
     MagSampleFetcher(unsigned int bram_uio_number, unsigned int bram_size);
     ~MagSampleFetcher();
 
-    std::vector<MagSample> GetSamples(unsigned int count);
-    std::vector<MagSample> GetSamples();
+    bool Start(unsigned int n_periods);
+    bool Start();
+
+    bool IsRunning();
+
+    bool GetSamples(std::vector<MagSample> *samples);
 
 private:
     BRAM<> bram;
     XMagsamplefetcher xmsf;
+
 };

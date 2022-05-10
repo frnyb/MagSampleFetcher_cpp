@@ -9,30 +9,63 @@ MagSampleFetcher::~MagSampleFetcher() {
     XMagsamplefetcher_Release(&xmsf);
 }
 
-std::vector<MagSample> MagSampleFetcher::GetSamples() {
-    while(!XMagsamplefetcher_IsIdle(&xmsf));
+bool MagSampleFetcher::Start(unsigned int n_periods) {
 
-    XMagsamplefetcher_Start(&xmsf);
+    if(!XMagsamplefetcher_IsIdle(&xmsf)) {
 
-	while(!XMagsamplefetcher_IsIdle(&xmsf));
+        return false;
 
-	int n_samples = XMagsamplefetcher_Get_n_samples_out(&xmsf);
-
-    std::vector<MagSample> samples;
-
-    for (int i = 0; i < n_samples; i++) {
-        MagSample mag_sample(&bram, i*12);
-        samples.push_back(mag_sample);
     }
-
-    return samples;
-}
-
-std::vector<MagSample> MagSampleFetcher::GetSamples(unsigned int n_periods) {
-    while(!XMagsamplefetcher_IsIdle(&xmsf));
 
     XMagsamplefetcher_Set_n_periods(&xmsf, n_periods);
 
-    return GetSamples();
+    return Start();
+
 }
 
+bool MagSampleFetcher::Start() {
+
+    if(!XMagsamplefetcher_IsIdle(&xmsf)) {
+
+        return false;
+
+    }
+
+    XMagsamplefetcher_Start(&xmsf);
+
+    return true;
+
+}
+
+ bool MagSampleFetcher::GetSamples(std::vector<MagSample> *samples) {
+
+    if(!XMagsamplefetcher_IsIdle(&xmsf)) {
+
+        return false;
+
+    }
+
+	int n_samples = XMagsamplefetcher_Get_n_samples_out(&xmsf);
+
+    for (int i = 0; i < n_samples; i++) {
+
+        MagSample mag_sample(&bram, i*12);
+        samples->push_back(mag_sample);
+
+    }
+
+    return true;
+}
+
+bool MagSampleFetcher::IsRunning() {
+
+    if(!XMagsamplefetcher_IsIdle(&xmsf)) {
+
+        return true;
+
+    } else {
+
+        return false;
+
+    }
+}
